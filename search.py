@@ -74,11 +74,13 @@ class Files(RetrieveLocal,
             full_name = os.path.join(save_path, name)
             if not self.is_web:
                 shutil.copy(f, full_name)
+                print("Saved", name)
             else:
                 resp = requests.get(f)
                 content = resp.content
                 with open(full_name, "wb") as wb:
                     wb.write(content)
+                    print("Saved", name)
         self.abspath = self.d_abspath
         return True
 
